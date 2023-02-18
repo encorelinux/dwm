@@ -40,6 +40,7 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 #include "fibonacci.c"
+#include "gaplessgrid.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
@@ -49,6 +50,8 @@ static const Layout layouts[] = {
  	{ "[\\]",      dwindle },	/* ---PATCH: fibonacci --- */
 	{ "TTT",      bstack },  /* ---PATCH: bottomstack --- */
 	{ "===",      bstackhoriz }, /* ---PATCH: bottomstack --- */
+ 	{ ":::",      gaplessgrid },
+
 };
 
 /* key definitions */
@@ -85,13 +88,14 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
-	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
-	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[5]} },
-	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[6]} },
+	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },  /* Tiling Layout */
+	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },  /* NULL - Floating Behavior */
+	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },  /* Monocle Layout */
+	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },  /* Fibonacci Layout - Spiral */
+	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },  /* Fibonacci Layout - Dwindle */
+	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[5]} },  /* Bottomstack Layout */
+	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[6]} },  /* Bottomstack Hoizontal Layout */
+	{ MODKEY,                       XK_g,      setlayout,      {.v = &layouts[7]} },  /* Gapless Grid Layout */
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },

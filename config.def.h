@@ -41,6 +41,7 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 
 #include "fibonacci.c"
 #include "gaplessgrid.c"
+#include "horizgrid.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
@@ -50,8 +51,8 @@ static const Layout layouts[] = {
  	{ "[\\]",      dwindle },	/* ---PATCH: fibonacci --- */
 	{ "TTT",      bstack },  /* ---PATCH: bottomstack --- */
 	{ "===",      bstackhoriz }, /* ---PATCH: bottomstack --- */
- 	{ ":::",      gaplessgrid },
-
+ 	{ ":::",      gaplessgrid },  /* --- PATCH: gaplessgrid --- */
+	{ "---",      horizgrid },   /* --- PATCH: horizgrid --- */
 };
 
 /* key definitions */
@@ -96,6 +97,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[5]} },  /* Bottomstack Layout */
 	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[6]} },  /* Bottomstack Hoizontal Layout */
 	{ MODKEY,                       XK_g,      setlayout,      {.v = &layouts[7]} },  /* Gapless Grid Layout */
+	{ MODKEY|ShiftMask,             XK_g,      setlayout,      {.v = &layouts[8]} },  /* Horizontal Grid Layout */	
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
